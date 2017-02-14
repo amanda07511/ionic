@@ -33,7 +33,7 @@ export class SearchPage {
  
             this.searching = false;
             this.setFilteredItems();
- 
+            
      });
   }
 
@@ -49,7 +49,7 @@ export class SearchPage {
     this.searchService.load(this.searchTerm).then(data => {
       this.items = data;
     });
-	 console.log(this.searchTerm);
+	 //console.log(this.searchTerm);
    }
 
 }

@@ -28,7 +28,7 @@ export class User {
 export class AuthService {
   
   currentUser: User;
-  data: string;
+  data: boolean;
   result: any;
 
 
@@ -50,7 +50,7 @@ export class AuthService {
 	        this.postInfo(credentials.email,credentials.password);
 	        
 	        
-	        let access = (this.data === "success");
+	        let access = (this.data === true);
 	        this.currentUser = new User(credentials.email, credentials.password, this.result);
 	        observer.next(access);
 	        observer.complete();
@@ -72,12 +72,12 @@ export class AuthService {
 	.subscribe(success => {
 	    // A success response
 	    this.result=success.token;
-	    this.data="success";
+	    this.data=true;
 	    //console.log(success.token);
 	}, error => {
 	    // An error happened
 	    this.result=error.error;
-	    this.data="error";
+	    this.data=false;
 	}, () => {
 	    console.log('Authentication Complete')
 	});

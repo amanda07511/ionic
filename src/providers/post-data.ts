@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http,  Headers, RequestOptions } from '@angular/http';
+import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 /*
@@ -13,7 +14,7 @@ export class PostData {
 
   data: any;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public alertCtrl: AlertController) {
     console.log('Hello PostData Provider');
   }
 
@@ -33,14 +34,21 @@ export class PostData {
 		image: 'http://media.v3.grenoble-tourisme.com/filer_public_thumbnails/filer_public/1c/67/1c6757ba-99d6-45c3-b21a-c318c6eba2c4/grenoble_environnement_-_pierre_jayet-2.jpg__3770x2524_q85_crop_subject_location-2154,1382_subsampling-2_upscale.jpg',
 	});
 
+	
+
   	return this.http.post('http://checkin-api.dev.cap-liberte.com/checkin', body, options)
 	.map(res => res.json())
 	.subscribe(success => {
-	    // A success response
-	    this.data=success.id;
+	    let alert = this.alertCtrl.create({
+	      title: 'Success',
+	      subTitle: 'Send Information success! checking id: '+success.id,
+	      buttons: ['OK']
+	    });
+	    alert.present();
+
 	}, error => {
 	    // An error happened
-	    console.log(error);
+	    console.log("Something happened! :( "+error);
 	}, () => {
 	    console.log('Authentication Complete')
 	});

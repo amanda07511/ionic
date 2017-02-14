@@ -1,6 +1,11 @@
 <ion-header>
-  <ion-navbar *navbar>
+  <ion-navbar >
     <ion-title>Find Me!</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,7 +24,7 @@
     </ion-row>
   
   <ion-row>
-    <ion-col>
+    <ion-col #map-col>
       <div #map id="map"></div> 
     </ion-col> 
   </ion-row>

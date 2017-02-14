@@ -53,7 +53,7 @@ export class MapPage {
       script.id = "googleMaps";
 
       if(this.apiKey){
-        script.src = 'http://maps.google.com/maps/api/js?key=AIzaSyB4bvIzNooE4Z7Qa5Loj13gnHXmVvj3c4E' + this.apiKey + '&callback=mapInit';
+        script.src = 'http://maps.google.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit';
       } else {
         script.src = 'http://maps.google.com/maps/api/js?callback=mapInit';       
       }

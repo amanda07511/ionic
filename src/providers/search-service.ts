@@ -13,6 +13,7 @@ export class SearchService {
 
   data: any;
   items: any;
+  url: string; 
 
   constructor(public http: Http) {
     console.log('Hello SearchService Provider');
