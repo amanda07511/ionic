@@ -52,4 +52,6 @@ export class SearchPage {
 	 //console.log(this.searchTerm);
    }
 
+   
+
 }

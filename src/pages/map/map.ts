@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ConnectivityService } from '../../providers/connectivity-service';
 import { Geolocation } from 'ionic-native';
+import { LastService } from '../../providers/last-service';
  
  declare var google;
 
@@ -13,7 +14,8 @@ import { Geolocation } from 'ionic-native';
 */
 @Component({
   selector: 'page-map',
-  templateUrl: 'map.html'
+  templateUrl: 'map.html',
+  providers: [LastService]
 })
 export class MapPage {
 
@@ -22,9 +24,11 @@ export class MapPage {
   map: any;
   mapInitialised: boolean = false;
   apiKey: 'AIzaSyBCN7HDHyOiH7C12WnhwpORf6-d5loHnLc';
+  public people: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public connectivityService: ConnectivityService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public connectivityService: ConnectivityService , public lastService: LastService ) {
   	this.loadGoogleMaps();
+    this.loadPeople();
   }//constructor
 
   ionViewDidLoad() {
@@ -135,6 +139,19 @@ export class MapPage {
     document.addEventListener('offline', onOffline, false);
 
   }//addConnectivity
+
+//get last checkings
+  loadPeople(){
+
+      this.lastService.loadLat().then(data => {
+      this.people = data;
+      });
+
+     
+       console.log("Information od loadLat "+JSON.stringify(this.people));
+     
+
+  }//loadPeople
 
 
 }

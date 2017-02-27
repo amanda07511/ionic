@@ -25,7 +25,12 @@ export class LoginPage {
   }
 
    public login() {
+
+    console.log(this.registerCredentials.email);
+    console.log(this.registerCredentials.password);
+    
     this.showLoading()
+    
     this.auth.login(this.registerCredentials).subscribe(allowed => {
       if (allowed) {
         setTimeout(() => {

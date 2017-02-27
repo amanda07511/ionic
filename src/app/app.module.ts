@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LastPage } from '../pages/last/last';
+import { ModalContentPage } from '../pages/last/last';
 import { MapPage } from '../pages/map/map';
 import { SearchPage } from '../pages/search/search';
 import { HomePage } from '../pages/home/home';
@@ -11,7 +12,6 @@ import { ConnectivityService } from '../providers/connectivity-service';
 import { SearchService } from '../providers/search-service';
 import { PostData } from '../providers/post-data';
 import { AuthService } from '../providers/auth-service';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
     LastPage,
     MapPage,
     SearchPage,
-    LoginPage
+    LoginPage,
+    ModalContentPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,7 +36,8 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
     LastPage,
     MapPage,
     SearchPage,
-    LoginPage
+    LoginPage,
+    ModalContentPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ConnectivityService, SearchService, PostData, AuthService]
 })

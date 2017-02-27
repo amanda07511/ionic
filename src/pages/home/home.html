@@ -24,17 +24,26 @@
     </ion-row>
   
   <ion-row>
-    <ion-col #map-col>
+    <ion-col  width-25></ion-col>
+    <ion-col  width-50>
       <div #map id="map"></div> 
     </ion-col> 
+    <ion-col  width-25></ion-col>
   </ion-row>
 
     <ion-row>
       <ion-col width-33></ion-col>
       <ion-col width-33>
-        <button ion-button full> <ion-icon name="md-add-circle"  (click)=" addChecking()"> Add Position</ion-icon></button>
+        <button ion-button full (click)=" addChecking()"><ion-icon name="md-add-circle" >Add Position</ion-icon></button>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col width-33><img [src]="base64Image" *ngIf="base64Image" /></ion-col>
+      <ion-col width-33>
+         <button ion-button color="primary" (click)=" accessGallery()" >Open Gallery</button>
+      </ion-col>
+    </ion-row> 
 
   </ion-grid>
 </ion-content>

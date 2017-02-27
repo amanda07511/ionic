@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+
 /*
   Generated class for the AuthService provider.
 
@@ -28,8 +29,10 @@ export class User {
 export class AuthService {
   
   currentUser: User;
-  data: boolean;
+  //data: String;
+  access: any;
   result: any;
+  post: any;
 
 
   constructor(public http: Http) {
@@ -43,46 +46,55 @@ export class AuthService {
 	      return Observable.throw("Please insert credentials");
 	    } else {
 
+        
+        //this.postInfo(credentials.email,credentials.password);
+        
 
-	      return Observable.create(observer => {
-	        
+	      return Observable.create(observer => {   
 	        // At this point make a request to your backend to make a real check!
-	        this.postInfo(credentials.email,credentials.password);
+          this.postInfo(credentials.email,credentials.password).then(data =>{
+            let success = data;
+            console.log("DATA2---->"+success);
+            this.access = (success === "success");
+            
+          });
 	        
-	        
-	        let access = (this.data === true);
-	        this.currentUser = new User(credentials.email, credentials.password, this.result);
-	        observer.next(access);
-	        observer.complete();
+            this.currentUser = new User(credentials.email, credentials.password, this.result);
+            observer.next(this.access);
+            observer.complete();
+         
 	      });
     }
   }
 
 
-  public postInfo(email, password){
-  	
+ public postInfo(email, password){
+
   	let body = JSON.stringify({
 		email: email,
 		password: password,
-	});
+	  });
 
+  return new Promise(resolve => {
 
-  	return this.http.post(' http://checkin-api.dev.cap-liberte.com/auth', body)
-	.map(res => res.json())
-	.subscribe(success => {
-	    // A success response
-	    this.result=success.token;
-	    this.data=true;
-	    //console.log(success.token);
-	}, error => {
-	    // An error happened
-	    this.result=error.error;
-	    this.data=false;
-	}, () => {
-	    console.log('Authentication Complete')
-	});
+    	 this.http.post(' http://checkin-api.dev.cap-liberte.com/auth', body)
+      	.map(res => res.json())
+      	.subscribe(success => {
+      	    // A success response
+      	    this.result=success.token;
+            //this.data = "success";
+            resolve("success");
+      	    console.log("I am in POSTINFO success")
+      	}, error => {
+      	    // An error happened
+      	    this.result=error.error;
+            console.log("I am in POSTINFO error")
+      	}, () => {
+      	    console.log('Authentication Complete')
+      	});
 
-  }//POSTINFO
+    });
+ }//POSTINFO
  
 
   public logout() {
