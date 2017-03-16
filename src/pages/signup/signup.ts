@@ -1,45 +1,43 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { SignupPage } from '../signup/signup';
+import { NavController, AlertController, LoadingController, Loading  } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  selector: 'page-signup',
+  templateUrl: 'signup.html'
 })
-export class LoginPage {
+export class SignupPage {
 
   loading: Loading;
-  registerCredentials = {email: '', password: ''};
+  registerCredentials = {name: '', email: '', password: ''};
 
   constructor(public nav: NavController,  private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {}
 
-   public login() {
+  public singup(){
+  	
+  	this.showLoading();
 
-    this.showLoading();
-
-    this.auth.login(this.registerCredentials).then((result) => {
+    this.auth.createAccount(this.registerCredentials).then((result) => {
             this.loading.dismiss();
             console.log(result);
             this.nav.setRoot(TabsPage);
         }, (err) => {
-            this.showError("Something is wrong, try again!");
-            console.log(err);
+            this.showError("Something went wrong,try again!");
+            console.log(err);            
         });
     
+  }//sinngup
 
-  }//login
- 
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     this.loading.present();
   }
- 
-  showError(text) {
+
+   showError(text) {
     setTimeout(() => {
       this.loading.dismiss();
     });
@@ -52,9 +50,4 @@ export class LoginPage {
     alert.present(prompt);
   }
 
-
-  singup(){
-    this.nav.push(SignupPage);
-  }
-
-}//export class
+}

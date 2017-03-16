@@ -29,10 +29,7 @@ export class HomePage {
 
   constructor(public nav: NavController, public postData: PostData,  private auth: AuthService, private app: App) {
 
-    let info = this.auth.getUserInfo();
-    this.password = info.password;
-    this.email = info.email;
-    this.token = info.token;
+    this.token = auth.token;
     
   }
   

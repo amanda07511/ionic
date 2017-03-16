@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { LastPage } from '../last/last';
 import { SearchPage } from '../search/search';
-import { MapPage } from '../map/map';
+
 
 
 @Component({
@@ -15,7 +15,7 @@ export class TabsPage {
   tab1Root: any = HomePage;
   tab2Root: any = LastPage;
   tab3Root: any = SearchPage;
-  tab4Root: any = MapPage;
+
 
 
   constructor() {
