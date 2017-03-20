@@ -23,27 +23,18 @@
 
     </ion-row>
   
-  <ion-row>
-    <ion-col  width-25></ion-col>
-    <ion-col  width-50>
-      <div #map id="map"></div> 
-    </ion-col> 
-    <ion-col  width-25></ion-col>
-  </ion-row>
+    <ion-card>
+      <div #map id="map"></div>
+      <button ion-button (click)=" addChecking()" full><ion-icon name="md-add-circle" >Add Position</ion-icon></button>
+    </ion-card>
 
-    <ion-row>
-      <ion-col width-33></ion-col>
-      <ion-col width-33>
-        <button ion-button full (click)=" addChecking()"><ion-icon name="md-add-circle" >Add Position</ion-icon></button>
-      </ion-col>
-    </ion-row>
+    <ion-card>
+      <img [src]="base64Image" *ngIf="base64Image" />
+      <button ion-button color="primary" (click)=" presentActionSheet()" full>Select Image</button>
+    </ion-card>
 
-    <ion-row>
-      <ion-col width-33><img [src]="base64Image" *ngIf="base64Image" /></ion-col>
-      <ion-col width-33>
-         <button ion-button color="primary" (click)=" accessGallery()" >Open Gallery</button>
-      </ion-col>
-    </ion-row> 
 
   </ion-grid>
+
+
 </ion-content>

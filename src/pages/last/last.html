@@ -8,7 +8,7 @@
 
 <ion-content padding>
 	<ion-list>
-	    <button ion-item  *ngFor="let person of people"  (click)="getLatLng(person.lat,person.lng)">
+	    <button ion-item  *ngFor="let person of people"  (click)="presentProfileModal(person.lat,person.lng)">
 	      <ion-avatar item-left>
 	        <img src="{{person.user.picture}}">
 	      </ion-avatar>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http,  Headers, RequestOptions } from '@angular/http';
 import { AlertController } from 'ionic-angular';
+import { Transfer } from 'ionic-native';
 import 'rxjs/add/operator/map';
 
 /*
@@ -18,9 +19,8 @@ export class PostData {
     console.log('Hello PostData Provider');
   }
 
-  sendInformation(token: any, lati: any, long: any){
+  sendInformation(token: any, lati: any, long: any, img: any){
 
-  	console.log("TOKEN EN SENDINFORMATION: -> "+token);
 
   	let headers = new Headers({
 		'Authorization': 'Bearer {{'+token+'}}'
@@ -31,10 +31,8 @@ export class PostData {
 	let body = JSON.stringify({
 		lat: lati,
 		lng: long,
-		image: 'http://media.v3.grenoble-tourisme.com/filer_public_thumbnails/filer_public/1c/67/1c6757ba-99d6-45c3-b21a-c318c6eba2c4/grenoble_environnement_-_pierre_jayet-2.jpg__3770x2524_q85_crop_subject_location-2154,1382_subsampling-2_upscale.jpg',
+		image: img
 	});
-
-	
 
   	return this.http.post('http://checkin-api.dev.cap-liberte.com/checkin', body, options)
 	.map(res => res.json())
@@ -57,8 +55,7 @@ export class PostData {
 
   }//Send
 
-
-  
+ 
   	
 
 }//PostData

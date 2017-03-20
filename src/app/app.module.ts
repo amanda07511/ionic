@@ -2,7 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LastPage } from '../pages/last/last';
-import { ModalContentPage } from '../pages/last/last';
+//import { ModalContentPage } from '../pages/last/last';
+import { Profile} from '../pages/last/last';
 import { MapPage } from '../pages/map/map';
 import { SearchPage } from '../pages/search/search';
 import { HomePage } from '../pages/home/home';
@@ -34,7 +35,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SearchPage,
     SignupPage,
     LoginPage,
-    ModalContentPage
+    Profile
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -49,7 +50,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SearchPage,
     LoginPage,
     SignupPage,
-    ModalContentPage
+    Profile
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage,  ConnectivityService, SearchService, PostData, AuthService , 
       {

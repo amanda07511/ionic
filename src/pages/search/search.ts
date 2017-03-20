@@ -23,6 +23,7 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public searchService: SearchService) {
   	this.searchControl = new FormControl();
+    //this.items.user.picture ="assets/img/user.jpg";
   }
 
   ionViewDidLoad() {
@@ -45,11 +46,14 @@ export class SearchPage {
 
   setFilteredItems() {
   	this.items=null;
- 	
-    this.searchService.load(this.searchTerm).then(data => {
-      this.items = data;
-    });
-	 //console.log(this.searchTerm);
+ 	  
+     if(this.searchTerm!=''){
+       this.searchService.load(this.searchTerm).then(data => {
+        this.items = data;
+      });
+ 
+     }
+    
    }
 
    

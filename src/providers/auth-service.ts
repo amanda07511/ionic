@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -23,6 +23,7 @@ export class AuthService {
   }
 
   public login(credentials) {
+    
       return new Promise((resolve, reject) => {
          console.log(credentials);
         this.http.post('http://checkin-api.dev.cap-liberte.com/auth', JSON.stringify(credentials))
@@ -44,7 +45,7 @@ export class AuthService {
 
      return new Promise((resolve, reject) => {
         console.log(details);
-        this.http.post('http://checkin-api.dev.cap-liberte.com/signup', JSON.stringify(details))
+        this.http.post('http://checkin-api.dev.cap-liberte.com/signup', details, )
           .subscribe(res => {
             let data = res.json();
             this.token = data.token;
